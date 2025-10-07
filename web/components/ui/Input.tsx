@@ -41,11 +41,7 @@ export function Input({ label, id, type, className, ...props }: InputProps) {
             className="absolute inset-y-0 right-3 flex items-center text-zinc-500 hover:text-zinc-700"
             tabIndex={-1}
           >
-            {showPassword ? (
-              <FaEye />
-            ) : (
-              <FaEyeSlash />
-            )}
+            {showPassword ? <FaEye /> : <FaEyeSlash />}
           </button>
         )}
       </div>
