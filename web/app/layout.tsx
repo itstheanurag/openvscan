@@ -2,9 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 
-export const runtime = 'edge';
-
-const siteTitle = "OpenVScan – Open Vulnerability Scanner";
+const siteTitle = "OpenVScan - Open Vulnerability Scanner";
 const siteDescription =
   "OpenVScan is a web security platform that combines open-source scanners with AI-assisted analysis for faster, more reliable pre-production testing.";
 
@@ -37,6 +35,11 @@ export const metadata: Metadata = {
     title: siteTitle,
     description: siteDescription,
   },
+  icons: {
+    icon: [
+      { url: "/logo.png", type: "image/png" },
+    ],
+  }
 };
 
 export default function RootLayout({
@@ -46,8 +49,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-     
-      <body>{children}</body>
+      <body>
+        <Navbar />
+        {children}
+      </body>
     </html>
   );
 }
