@@ -8,16 +8,15 @@ OpenVScan is a web-based vulnerability scanner that integrates open-source tools
 [![GitHub issues](https://img.shields.io/github/issues/Buddhsen-tripathi/openvscan.svg)](https://github.com/Buddhsen-tripathi/openvscan/issues)
 [![Build Status](https://img.shields.io/badge/build-passing-brightgreen.svg)](https://github.com/Buddhsen-tripathi/openvscan/actions)
 
-
 ## Planned Architecture
 
-| Tier | Stack | Responsibilities |
-| --- | --- | --- |
-| UI (`web/`) | Next.js 15, React 19, Tailwind CSS | Scan setup, dashboards, reporting, multi-tenant UX |
-| API (`api/`) | NestJS 11, TypeScript, PostgreSQL ORM | Projects, auth, scan orchestration, findings API |
-| Workers | Containerized runners + message queue | Execute scanners, aggregate artifacts, stream telemetry |
-| Storage | PostgreSQL, object storage, Redis | Metadata, artifacts, coordination primitives |
-| AI Services | LLM providers | Summaries, deduplication, remediation guidance |
+| Tier         | Stack                                 | Responsibilities                                        |
+| ------------ | ------------------------------------- | ------------------------------------------------------- |
+| UI (`web/`)  | Next.js 15, React 19, Tailwind CSS    | Scan setup, dashboards, reporting, multi-tenant UX      |
+| API (`api/`) | NestJS 11, TypeScript, PostgreSQL ORM | Projects, auth, scan orchestration, findings API        |
+| Workers      | Containerized runners + message queue | Execute scanners, aggregate artifacts, stream telemetry |
+| Storage      | PostgreSQL, object storage, Redis     | Metadata, artifacts, coordination primitives            |
+| AI Services  | LLM providers                         | Summaries, deduplication, remediation guidance          |
 
 ## Repository Layout
 
@@ -52,6 +51,25 @@ pnpm install
 2. Populate service-specific overrides as they appear:
    - `api/.env` for the NestJS backend
    - `web/.env.local` for the Next.js UI
+
+## Formatting the code
+
+We enforce consistent code style across the repository using automated formatters:
+
+- **API (`api/`):**  
+  Uses [Prettier](https://prettier.io/) via the `esbenp.prettier-vscode` extension.
+
+  - Install the Prettier VS Code extension.
+  - Formatting is automatically applied on save if you enable `"editor.formatOnSave": true` in your VS Code settings.
+  - You can also run formatting manually with `pnpm --filter openvscan-api format` or from the command palette.
+
+- **Web (`web/`):**  
+  Uses [Biome](https://biomejs.dev/) via the `biomejs.biome` VS Code extension.
+  - Install the Biome VS Code extension.
+  - Formatting is automatically applied on save if you enable `"editor.formatOnSave": true` in your VS Code settings.
+  - You can also run formatting manually with `pnpm --filter openvscan-web format`.
+
+> Consistent formatting is enforced in CI. Please ensure your code is formatted before committing.
 
 ## Running Locally (Roadmap)
 
