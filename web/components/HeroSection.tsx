@@ -1,25 +1,25 @@
-'use client';
+"use client";
 
-import Link from 'next/link';
-import { useEffect, useState } from 'react';
+import Link from "next/link";
+import { useEffect, useState } from "react";
 
 export default function HeroSection() {
   const [scrollY, setScrollY] = useState(0);
 
   useEffect(() => {
     const handleScroll = () => setScrollY(window.scrollY);
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-secondary">
       {/* Animated SVG Background */}
-      <div 
+      <div
         className="absolute inset-0 flex items-center justify-center"
-        style={{ 
+        style={{
           transform: `scale(${1 + scrollY * 0.0005}) rotate(${scrollY * 0.05}deg)`,
-          opacity: Math.max(0.1, 1 - scrollY * 0.002)
+          opacity: Math.max(0.1, 1 - scrollY * 0.002),
         }}
       >
         <svg
@@ -28,12 +28,60 @@ export default function HeroSection() {
           xmlns="http://www.w3.org/2000/svg"
         >
           {/* Rings and Arcs using primary color */}
-          <circle cx="100" cy="100" r="90" fill="none" stroke="var(--color-primary)" strokeWidth="0.5" opacity="0.2" className="animate-pulse-slow" />
-          <circle cx="100" cy="100" r="70" fill="none" stroke="var(--color-primary)" strokeWidth="0.5" opacity="0.3" className="animate-pulse-slow" style={{ animationDelay: '1s' }} />
-          <circle cx="100" cy="100" r="80" fill="var(--color-background)" stroke="var(--color-primary)" strokeWidth="1" opacity="0.1"/>
-          <path d="M40 100 a60 60 0 0 1 120 0" fill="none" stroke="var(--color-primary)" strokeWidth="8" strokeLinecap="round" className="animate-scan-arc" />
-          <path d="M70 100 a30 30 0 0 1 60 0" fill="none" stroke="var(--color-primary)" strokeWidth="6" strokeLinecap="round" className="animate-scan-arc" style={{ animationDelay: '0.5s' }} />
-          <circle cx="100" cy="100" r="4" fill="var(--color-primary)" className="animate-pulse-slow" />
+          <circle
+            cx="100"
+            cy="100"
+            r="90"
+            fill="none"
+            stroke="var(--color-primary)"
+            strokeWidth="0.5"
+            opacity="0.2"
+            className="animate-pulse-slow"
+          />
+          <circle
+            cx="100"
+            cy="100"
+            r="70"
+            fill="none"
+            stroke="var(--color-primary)"
+            strokeWidth="0.5"
+            opacity="0.3"
+            className="animate-pulse-slow"
+            style={{ animationDelay: "1s" }}
+          />
+          <circle
+            cx="100"
+            cy="100"
+            r="80"
+            fill="var(--color-background)"
+            stroke="var(--color-primary)"
+            strokeWidth="1"
+            opacity="0.1"
+          />
+          <path
+            d="M40 100 a60 60 0 0 1 120 0"
+            fill="none"
+            stroke="var(--color-primary)"
+            strokeWidth="8"
+            strokeLinecap="round"
+            className="animate-scan-arc"
+          />
+          <path
+            d="M70 100 a30 30 0 0 1 60 0"
+            fill="none"
+            stroke="var(--color-primary)"
+            strokeWidth="6"
+            strokeLinecap="round"
+            className="animate-scan-arc"
+            style={{ animationDelay: "0.5s" }}
+          />
+          <circle
+            cx="100"
+            cy="100"
+            r="4"
+            fill="var(--color-primary)"
+            className="animate-pulse-slow"
+          />
         </svg>
       </div>
 
@@ -53,19 +101,29 @@ export default function HeroSection() {
         <h1 className="text-5xl sm:text-6xl md:text-7xl font-bold mb-6 text-foreground animate-fade-in-up">
           Secure Your Code
           <br />
-        <span
+          <span
             className="text-primary"
-            style={{ WebkitTextStroke: '2px var(--color-foreground)', WebkitTextFillColor: 'currentColor' }}
-        >
+            style={{
+              WebkitTextStroke: "2px var(--color-foreground)",
+              WebkitTextFillColor: "currentColor",
+            }}
+          >
             Before It Ships
-        </span>
+          </span>
         </h1>
 
-        <p className="text-lg md:text-xl text-muted-foreground mb-12 max-w-2xl mx-auto leading-relaxed animate-fade-in-up" style={{ animationDelay: '0.2s' }}>
-          Combines proven open-source security scanners with AI-driven analysis for smarter, faster pre-production testing.
+        <p
+          className="text-lg md:text-xl text-muted-foreground mb-12 max-w-2xl mx-auto leading-relaxed animate-fade-in-up"
+          style={{ animationDelay: "0.2s" }}
+        >
+          Combines proven open-source security scanners with AI-driven analysis
+          for smarter, faster pre-production testing.
         </p>
 
-        <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-16 animate-fade-in-up" style={{ animationDelay: '0.4s' }}>
+        <div
+          className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-16 animate-fade-in-up"
+          style={{ animationDelay: "0.4s" }}
+        >
           <Link
             href="/get-started"
             className="px-8 py-4 bg-primary text-primary-foreground rounded-lg font-semibold hover:bg-primary/90 transition-all shadow-lg shadow-primary/50"
