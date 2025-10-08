@@ -1,5 +1,5 @@
-import Image from "next/image";
-import React from "react";
+import Image from 'next/image';
+import React from 'react';
 
 interface LogoProps {
   height?: number;
@@ -15,7 +15,7 @@ const Logo: React.FC<LogoProps> = ({ height = 40, width = 40, className }) => {
       width={width}
       height={height}
       className={className}
-      priority // ensures logo loads fast
+      priority
     />
   );
 };
