@@ -11,6 +11,7 @@ async function bootstrap() {
   const logger = new Logger('Bootstrap');
   const app = await NestFactory.create(AppModule, {
     logger: ['error', 'warn', 'log', 'debug', 'verbose'],
+    bodyParser: false,
   });
 
   app.useGlobalPipes(
@@ -25,7 +26,9 @@ async function bootstrap() {
   try {
     const allowedOrigins = process.env.FRONTEND_URL;
     if (!allowedOrigins) {
-      throw new Error('FRONTEND_URL environment variable is required to configure CORS.');
+      throw new Error(
+        'FRONTEND_URL environment variable is required to configure CORS.',
+      );
     }
 
     app.enableCors({
@@ -74,7 +77,9 @@ async function bootstrap() {
   await app.listen(port);
 
   logger.log(`Application is running on: http://localhost:${port}`);
-  logger.log(`Swagger documentation available at: http://localhost:${port}/api/docs`);
+  logger.log(
+    `Swagger documentation available at: http://localhost:${port}/api/docs`,
+  );
 }
 
 bootstrap();

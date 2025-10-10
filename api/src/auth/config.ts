@@ -2,6 +2,7 @@ import { drizzleAdapter } from 'better-auth/adapters/drizzle';
 import { drizzle } from 'drizzle-orm/node-postgres';
 import { Pool } from 'pg';
 import { betterAuth } from 'better-auth';
+import { openAPI } from 'better-auth/plugins';
 import { hashPassword, verifyPassword } from './password';
 import * as schema from 'src/database/models/schema';
 
@@ -16,6 +17,7 @@ export const authConfig = betterAuth({
   database: drizzleAdapter(db, {
     provider: 'pg',
   }),
+  plugins: [openAPI()],
   emailAndPassword: {
     enabled: true,
     password: { hash: hashPassword, verify: verifyPassword },

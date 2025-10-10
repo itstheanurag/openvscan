@@ -7,17 +7,13 @@ export class AuthService {
   constructor(private readonly betterAuthService: BetterAuthService) {}
 
   register(data: RegisterDto) {
-    try {
-      return this.betterAuthService.betterAuthApi.signUpEmail({
-        body: {
-          name: data.name,
-          email: data.email,
-          password: data.password,
-        },
-      });
-    } catch (err) {
-      console.log('ERROR IN REGISRE', err);
-    }
+    return this.betterAuthService.betterAuthApi.signUpEmail({
+      body: {
+        name: data.name,
+        email: data.email,
+        password: data.password,
+      },
+    });
   }
 
   async login(data: LoginDto) {
