@@ -4,9 +4,11 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { ScanModule } from './scan/scan.module';
 import { LoggingInterceptor } from './common/logging.interceptor';
+import { DatabaseModule } from './database/database.module';
+import { AuthModule } from './auth/auth.module';
 
 @Module({
-  imports: [ScanModule],
+  imports: [DatabaseModule, AuthModule, ScanModule],
   controllers: [AppController],
   providers: [
     AppService,
