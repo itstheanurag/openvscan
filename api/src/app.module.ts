@@ -4,11 +4,15 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { ScanModule } from './scan/scan.module';
 import { LoggingInterceptor } from './common/logging.interceptor';
-import { DatabaseModule } from './database/database.module';
-import { AuthModule } from './auth/auth.module';
+import { ConfigModule } from '@nestjs/config';
 
 @Module({
-  imports: [DatabaseModule, AuthModule, ScanModule],
+  imports: [
+    ConfigModule.forRoot({
+      isGlobal: true,
+    }),
+    ScanModule,
+  ],
   controllers: [AppController],
   providers: [
     AppService,
