@@ -1,2 +1,2 @@
 export * from './auth.service';
-export * from './betterAuth.service';
+export * from './better-auth.provider';
