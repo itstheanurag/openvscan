@@ -13,8 +13,6 @@ export class AuthService {
   ) {}
 
   async register(data: RegisterDto) {
-    console.log(data, 'Data from request body');
-
     return await this.auth.api.signUpEmail({
       body: {
         name: data.name,
@@ -42,13 +40,10 @@ export class AuthService {
         .trim();
     }
 
-    console.log(headers.authorization);
-
     const session = await this.auth.api.getSession({
       headers: fromNodeHeaders(headers),
     });
 
-    console.log(session);
     return session;
   }
 

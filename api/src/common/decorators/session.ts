@@ -16,7 +16,6 @@ export const GetSession = createParamDecorator(
       });
     }
 
-    if (data) return session[data];
-    return session;
+    return data ? session[data] : session;
   },
 );
