@@ -1,33 +1,27 @@
-import { drizzle, NodePgDatabase } from 'drizzle-orm/node-postgres';
-import { Pool } from 'pg';
+import { drizzle, NeonHttpDatabase } from 'drizzle-orm/neon-http';
+import { neon } from '@neondatabase/serverless';
 import { Provider } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import * as schema from './models/schema';
 
 export const DATABASE_PROVIDER = 'DATABASE_PROVIDER';
-export const POOL_PROVIDER = 'POOL_PROVIDER';
+export const NEON_PROVIDER = 'NEON_PROVIDER';
 
-export const PoolProvider: Provider = {
-  provide: POOL_PROVIDER,
+export const NeonClientProvider: Provider = {
+  provide: NEON_PROVIDER,
   inject: [ConfigService],
   useFactory: (configService: ConfigService) => {
     const databaseUrl = configService.getOrThrow<string>('DATABASE_URL');
-
-    const pool = new Pool({
-      connectionString: databaseUrl,
-      ssl:
-        process.env.NODE_ENV === 'production'
-          ? { rejectUnauthorized: false }
-          : false,
-    });
-    return pool;
+    return neon(databaseUrl);
   },
 };
 
 export const DrizzleProvider: Provider = {
   provide: DATABASE_PROVIDER,
-  inject: [POOL_PROVIDER],
-  useFactory: (pool: Pool): NodePgDatabase<typeof schema> => {
-    return drizzle(pool, { schema });
+  inject: [NEON_PROVIDER],
+  useFactory: (
+    sql: ReturnType<typeof neon>,
+  ): NeonHttpDatabase<typeof schema> => {
+    return drizzle(sql, { schema });
   },
 };
