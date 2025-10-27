@@ -4,15 +4,12 @@ import { GlobalExceptionFilter } from './common/exception.filter';
 import { ValidationPipe, Logger, INestApplication } from '@nestjs/common';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import { ConfigService } from '@nestjs/config';
-// import * as dotenv from 'dotenv';
-
-// dotenv.config();
 
 async function bootstrap() {
   const logger = new Logger('Bootstrap');
   const app = await NestFactory.create(AppModule, {
     logger: ['error', 'warn', 'log', 'debug', 'verbose'],
-    // bodyParser: false,
+    bodyParser: false,
   });
 
   const configService = app.get(ConfigService);
@@ -72,7 +69,7 @@ export function setupSwaggerDocumentation(app: INestApplication) {
     .setTitle(title)
     .setDescription(description)
     .setVersion(version)
-    .addBearerAuth()
+    .addCookieAuth('better-auth.session_token')
     .build();
 
   const document = SwaggerModule.createDocument(app, swaggerConfig);
@@ -85,4 +82,5 @@ export function setupSwaggerDocumentation(app: INestApplication) {
     },
   });
 }
+
 bootstrap();
