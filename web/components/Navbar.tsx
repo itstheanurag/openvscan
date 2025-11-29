@@ -47,13 +47,18 @@ const Navbar = () => {
         </Link>
 
         <nav className="hidden md:flex items-center gap-8">
-          {['Features', 'How It Works', 'Docs'].map((item) => (
+          {[
+            { label: 'Features', href: '/#features' },
+            { label: 'How It Works', href: '/#how-it-works' },
+            { label: 'About', href: '/about' },
+            { label: 'Guides', href: '/guides' },
+          ].map((item) => (
             <Link
-              key={item}
-              href={item === 'Docs' ? '/docs' : `/#${item.toLowerCase().replace(/\s+/g, '-')}`}
+              key={item.label}
+              href={item.href}
               className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
             >
-              {item}
+              {item.label}
             </Link>
           ))}
         </nav>
@@ -93,14 +98,19 @@ const Navbar = () => {
             className="absolute top-16 left-4 right-4 rounded-2xl border border-border bg-background/90 backdrop-blur-xl p-4 shadow-2xl"
           >
             <nav className="flex flex-col space-y-4">
-              {['Features', 'How It Works', 'Docs'].map((item) => (
+              {[
+                { label: 'Features', href: '/#features' },
+                { label: 'How It Works', href: '/#how-it-works' },
+                { label: 'About', href: '/about' },
+                { label: 'Guides', href: '/guides' },
+              ].map((item) => (
                 <Link
-                  key={item}
-                  href={item === 'Docs' ? '/docs' : `/#${item.toLowerCase().replace(/\s+/g, '-')}`}
+                  key={item.label}
+                  href={item.href}
                   className="text-base font-medium text-muted-foreground hover:text-foreground"
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
-                  {item}
+                  {item.label}
                 </Link>
               ))}
               <Link

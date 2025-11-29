@@ -70,7 +70,7 @@ export default function SpotlightButton({
           background: `radial-gradient(600px circle at ${position.x}px ${position.y}px, rgba(255,255,255,.1), transparent 40%)`,
         }}
       />
-      <span className="relative z-10">{children}</span>
+      <span className="relative z-10 flex items-center justify-center">{children}</span>
     </Component>
   );
 }

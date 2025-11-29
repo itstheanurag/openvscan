@@ -14,6 +14,7 @@ const socialLinks = [
 const footerNav = {
   product: [
     { href: '/#features', label: 'Features' },
+    { href: '/guides', label: 'Guides' },
     { href: '/docs', label: 'Docs' },
   ],
   community: [
